@@ -1,0 +1,16 @@
+.otherInformationContainer {
+  h3 {
+    font-weight: bold;
+    padding: 4px 0;
+    border-bottom: 2px solid #000;
+
+    margin-bottom: 20px;
+  }
+
+  .experienceContainer {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+  }
+}

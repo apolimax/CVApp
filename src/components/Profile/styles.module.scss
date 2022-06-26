@@ -1,0 +1,24 @@
+.profileContainer {
+
+    margin-top: 40px;
+
+    h3 {
+        font-weight: bold;
+        padding: 4px 0;
+        border-bottom: 2px solid #fff;
+        
+        margin-bottom: 20px;
+    }
+
+    .profileInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        margin-bottom: 30px;
+    }
+
+    p {
+        text-align: justify;
+    }
+}

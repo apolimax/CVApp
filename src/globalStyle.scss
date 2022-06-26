@@ -1,0 +1,55 @@
+:root {
+  --primary: rgb(59, 56, 56);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+
+  .profile {
+    color: #ffff;
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px;
+  }
+
+  .experiences {
+    background-color: #ffff;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 40px;
+  }
+
+  input {
+    font-family: "Open Sans", sans-serif;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: none;
+    grid-template-rows: 0.5fr 1fr;
+
+    .profile {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+
+      gap: 10px;
+    }
+  }
+}
