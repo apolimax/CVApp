@@ -93,6 +93,14 @@ export default function ResumeContextProvider({
     setMyExperiences(newExperiences);
   };
 
+  const updateOtherInfos = (newInfo: string) => {
+    const nextInfoId = myOtherInformations.length + 1;
+    setMyOtherInformations([
+      ...myOtherInformations,
+      { id: `${nextInfoId}`, description: newInfo },
+    ]);
+  };
+
   return (
     <ResumeContext.Provider
       value={{
@@ -103,6 +111,7 @@ export default function ResumeContextProvider({
         updateSkills,
         updateTechs,
         updateRespExp,
+        updateOtherInfos,
       }}
     >
       {children}
@@ -119,6 +128,7 @@ export function useResumeContext() {
     updateRespExp,
     updateSkills,
     updateTechs,
+    updateOtherInfos,
   } = useContext(ResumeContext);
 
   return {
@@ -129,5 +139,6 @@ export function useResumeContext() {
     updateRespExp,
     updateSkills,
     updateTechs,
+    updateOtherInfos,
   };
 }

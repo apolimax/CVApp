@@ -34,4 +34,5 @@ export type resumeContextType = {
   updateSkills: (newSkill: skill) => void;
   updateTechs: (newTech: technology) => void;
   updateRespExp: (newExp: string, company: string) => void;
+  updateOtherInfos: (newInfo: string) => void;
 };

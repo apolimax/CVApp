@@ -31,6 +31,13 @@
     flex-direction: column;
 
     padding: 40px;
+
+    .experiences__info {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-around;
+    }
   }
 
   input {

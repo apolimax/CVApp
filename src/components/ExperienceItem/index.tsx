@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useResumeContext } from "../../context/context";
 import { experience } from "../../types";
+import Form from "../Form";
 import styles from "./styles.module.scss";
 
 export default function ExperienceItem({ ...experience }: experience) {
@@ -11,7 +12,7 @@ export default function ExperienceItem({ ...experience }: experience) {
     e.preventDefault();
 
     if (!newResponsability) {
-      return;
+      return null;
     }
     updateRespExp(newResponsability, experience.company);
     setNewResponsability("");
@@ -35,17 +36,12 @@ export default function ExperienceItem({ ...experience }: experience) {
         {experience.responsabilities.map((responsability, i) => (
           <li key={i}>{responsability}</li>
         ))}
-        <form onSubmit={submitExperience}>
-          <li>
-            <input
-              type="text"
-              placeholder="Add a responsability ..."
-              value={newResponsability}
-              onChange={(e) => setNewResponsability(e.target.value)}
-            />
-            <button type="submit">+</button>
-          </li>
-        </form>
+        <Form
+          placeholder="Add a responsability ..."
+          newItem={newResponsability}
+          setNewItem={setNewResponsability}
+          submit={submitExperience}
+        />
       </ul>
     </div>
   );

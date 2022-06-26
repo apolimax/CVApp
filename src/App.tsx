@@ -21,8 +21,10 @@ function App() {
       {/* blank space */}
       <div className="experiences">
         <ResumeHeader />
-        <ProfessionalExperience experiences={myExperiences} />
-        <OtherInformations otherInformations={myOtherInformations} />
+        <div className="experiences__info">
+          <ProfessionalExperience experiences={myExperiences} />
+          <OtherInformations otherInformations={myOtherInformations} />
+        </div>
       </div>
     </main>
   );
