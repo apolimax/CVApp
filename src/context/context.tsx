@@ -82,41 +82,15 @@ export default function ResumeContextProvider({
       (item) => item.company === company
     );
 
-    let companyName;
+    const newExperiences = [...myExperiences];
 
-    if (currentCompany) {
-      companyName = currentCompany.company;
-    }
-
-    if (companyName === "codeminer42") {
-      const codeminer42 = myExperiences.find(
-        (experienceItem) => experienceItem.company === "codeminer42"
-      );
-      codeminer42?.responsabilities.push(newExp);
-
-      const laisOnly = myExperiences.filter(
-        (experienceItem) => experienceItem.company !== "codeminer42"
-      );
-
-      if (codeminer42) {
-        const newExps = [codeminer42, ...laisOnly];
-        setMyExperiences(newExps);
+    newExperiences.forEach((experience) => {
+      if (experience.company === currentCompany?.company) {
+        experience.responsabilities.push(newExp);
       }
-    } else {
-      const lais = myExperiences.find(
-        (experienceItem) => experienceItem.company === "LAIS/HUOL"
-      );
-      lais?.responsabilities.push(newExp);
+    });
 
-      const codeminerOnly = myExperiences.filter(
-        (experienceItem) => experienceItem.company !== "LAIS/HUOL"
-      );
-
-      if (lais) {
-        const newExps = [...codeminerOnly, lais];
-        setMyExperiences(newExps);
-      }
-    }
+    setMyExperiences(newExperiences);
   };
 
   return (
