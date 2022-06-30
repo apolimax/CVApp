@@ -7,10 +7,31 @@
     margin-bottom: 20px;
   }
 
+  h4 {
+    color: var(--primary);
+  }
+
   .experienceContainer {
     display: flex;
     flex-direction: column;
 
     gap: 20px;
+
+    .itemList {
+      display: flex;
+      gap: 4px;
+
+      button {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+
+        color: #ffff;
+        background-color: var(--red);
+        border: none;
+        border-radius: 3px;
+        font-weight: bold;
+      }
+    }
   }
 }

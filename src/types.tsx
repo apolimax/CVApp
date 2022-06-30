@@ -10,7 +10,10 @@ export type technology = {
   proficiency: string;
 };
 
-export type responsability = string;
+export type responsability = {
+  id: string;
+  description: string;
+};
 
 export type experience = {
   id: string;
@@ -30,9 +33,10 @@ export type resumeContextType = {
   mySkills: skill[];
   myTechnologies: technology[];
   myExperiences: experience[];
+  setMyExperiences: (experiences: experience[]) => void;
+  setMyOtherInformations: (otherInfos: otherInformation[]) => void;
   myOtherInformations: otherInformation[];
   updateSkills: (newSkill: skill) => void;
   updateTechs: (newTech: technology) => void;
-  updateRespExp: (newExp: string, company: string) => void;
-  updateOtherInfos: (newInfo: string) => void;
+  addRespExp: (newExp: string, company: string) => void;
 };

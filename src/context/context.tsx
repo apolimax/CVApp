@@ -2,6 +2,7 @@ import { createContext, ReactNode, useState, useContext } from "react";
 import {
   experience,
   otherInformation,
+  responsability,
   resumeContextType,
   skill,
   technology,
@@ -31,10 +32,14 @@ const experiences = [
     startDate: "2022-4-01",
     endDate: null,
     jobTitle: "Desenvolvedor Frontend",
-    company: "codeminer42",
+    company: "Codeminer42",
     responsabilities: [
-      "Development of user interfaces for a variety of clients across Brazil and the US",
-      "Attend and preparing of workshops",
+      {
+        id: "1",
+        description:
+          "Development of user interfaces for a variety of clients across Brazil and the US",
+      },
+      { id: "2", description: "Attend and preparing of workshops" },
     ],
   },
   {
@@ -44,7 +49,11 @@ const experiences = [
     jobTitle: "Desenvolvedor Frontend",
     company: "LAIS/HUOL",
     responsabilities: [
-      "Development of user interfaces for healthcare web applications",
+      {
+        id: "1",
+        description:
+          "Development of user interfaces for healthcare web applications",
+      },
     ],
   },
 ];
@@ -77,28 +86,36 @@ export default function ResumeContextProvider({
     setMyTechnologies([...myTechnologies, newTech]);
   };
 
-  const updateRespExp = (newExp: string, company: string) => {
-    const currentCompany = myExperiences.find(
-      (item) => item.company === company
+  const addRespExp = (newExp: string, company: string) => {
+    const companyItemArray = myExperiences.filter(
+      (companyItem) => companyItem.company === company
     );
 
-    const newExperiences = [...myExperiences];
+    const [companyItemObject] = companyItemArray;
 
-    newExperiences.forEach((experience) => {
-      if (experience.company === currentCompany?.company) {
-        experience.responsabilities.push(newExp);
+    const { responsabilities } = companyItemObject;
+
+    const nextRespId = responsabilities.length + 1;
+
+    const newResponsabilities: responsability[] = [
+      ...responsabilities,
+      { id: `${nextRespId}`, description: newExp },
+    ];
+
+    const newExperiences: experience[] = [];
+
+    myExperiences.forEach((experience) => {
+      if (experience.company === company) {
+        newExperiences.push({
+          ...experience,
+          responsabilities: newResponsabilities,
+        });
+      } else {
+        newExperiences.push(experience);
       }
     });
 
     setMyExperiences(newExperiences);
-  };
-
-  const updateOtherInfos = (newInfo: string) => {
-    const nextInfoId = myOtherInformations.length + 1;
-    setMyOtherInformations([
-      ...myOtherInformations,
-      { id: `${nextInfoId}`, description: newInfo },
-    ]);
   };
 
   return (
@@ -107,11 +124,12 @@ export default function ResumeContextProvider({
         mySkills,
         myTechnologies,
         myExperiences,
+        setMyExperiences,
         myOtherInformations,
+        setMyOtherInformations,
         updateSkills,
         updateTechs,
-        updateRespExp,
-        updateOtherInfos,
+        addRespExp,
       }}
     >
       {children}
@@ -123,22 +141,24 @@ export function useResumeContext() {
   const {
     mySkills,
     myExperiences,
+    setMyExperiences,
     myTechnologies,
     myOtherInformations,
-    updateRespExp,
+    setMyOtherInformations,
+    addRespExp,
     updateSkills,
     updateTechs,
-    updateOtherInfos,
   } = useContext(ResumeContext);
 
   return {
     mySkills,
     myExperiences,
+    setMyExperiences,
     myTechnologies,
     myOtherInformations,
-    updateRespExp,
+    setMyOtherInformations,
+    addRespExp,
     updateSkills,
     updateTechs,
-    updateOtherInfos,
   };
 }

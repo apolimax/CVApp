@@ -13,7 +13,15 @@ export default function OtherInformations({
 }: OtherInformationsProps) {
   const [newInfo, setNewInfo] = useState("");
 
-  const { updateOtherInfos } = useResumeContext();
+  const { setMyOtherInformations } = useResumeContext();
+
+  function removeInfo(id: string) {
+    const filteredInfos = otherInformations.filter(
+      (info) => info.id !== id
+    );
+
+    setMyOtherInformations(filteredInfos);
+  }
 
   function submitOtherInfo(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -21,7 +29,13 @@ export default function OtherInformations({
     if (!newInfo) {
       return null;
     }
-    updateOtherInfos(newInfo);
+
+    const nextInfoId = otherInformations.length + 1;
+    setMyOtherInformations([
+      ...otherInformations,
+      { id: `${nextInfoId}`, description: newInfo },
+    ]);
+
     setNewInfo("");
   }
 
@@ -33,7 +47,15 @@ export default function OtherInformations({
       </h3>
       <div className={styles.experienceContainer}>
         {otherInformations.map((info) => (
-          <p key={info.id}>{info.description}</p>
+          <div key={info.id} className={styles.itemList}>
+            <h4>{info.description}</h4>
+            <button
+              type="button"
+              onClick={() => removeInfo(info.id)}
+            >
+              x
+            </button>
+          </div>
         ))}
         <Form
           placeholder="Add a new info ..."
