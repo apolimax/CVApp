@@ -7,13 +7,9 @@ export default function Profile() {
       <div className={styles.profileInfo}>
         <div>
           <p>Will Apolinário</p>
-          <p>84 / Natal</p>
         </div>
         <div>
           <p>Brazilian</p>
-        </div>
-        <div>
-          <p>willieapolinario@gmail.com</p>
         </div>
         <div>
           <a
