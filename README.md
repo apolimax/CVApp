@@ -1,6 +1,6 @@
 # Curriculum Vitae Resume App
 
-This app was developed based on [this curriculum vitae design](https://github.com/Promobit/front-end-challenge)
+This app was developed based on [this curriculum vitae design](https://stock.adobe.com/br/442990859).
 
 ## Screenshot
 
